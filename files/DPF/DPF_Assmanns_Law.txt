@@ -1,0 +1,1432 @@
+
+Aßmann's Law
+small primer on design patterns and frameworks
+lecture notes for the lecture Design Patterns and frameworks in the 2007/2008 winter semester by Prof. Uwe Aßmann
+compilation of Dietrich chamber
+
+
+
+
+
+
+
+
+
+Aßmann'S LAW 1
+Introduction _____________________________________________________________ 3
+0 Introduction 5
+0.1 Standard problems: _______________________________________ ____________________________________________ ___________________________________________________ 5 0.2 History 7 0.3 some definitions ____________________________________________
+____________________________________________ 11
+1.1 8 1 Design Patterns soon as adopted 11 1.2 Simple Patterns Creational Patterns for variability variability ______________________________ 16 1.3 Simple Patterns for expandability _______________________ 18 1.4 bridging Architektur-Inkompatibilitat ___________________ 23 1.5 Usability of Design Patterns___________________________________
+___________________________________________ 29 3 26 2 role-based design frameworks and product lines 35
+3.1 Framework Variation Patterns Field not indispensable text 35 3.2 Framework Extension Patterns__________________________________ Pattern-Language ___________________________ 40 3.3 Tools and Materials 45 3.4 Eclipse and Framework Extension-Languages _____________________ 48 3.5 SAP R/3 Framework___________________________________________ 50 3.6 San Francisco Framework for Business Applications ________________ 52 3.7 Framework documentation ____________________________________ 54 3.8 trustworthy Framework Instantiation _______________________ 55 3.9 binary compatibility I finished
+___________________________________________ _____________________ 58 4 Refactoring and beyond 59
+
+
+
+
+2 Aßmann'S LAW
+
+
+
+
+
+Aßmann'S LAW 3
+Foreword
+This almanac is first and foremost for personal Prufungsvorberei-
+tung by the substance of the lecture design patterns and frameworks at the Technical University of
+Dresden in running text is summarized. Different sources are used, which are not explicitly identified. Starting point is the change might-
+sungsskript in the form of the slide presentation by Prof. Dr. Uwe Aßmann from the
+winter semester 2007/2008. In addition to related resources as well as conference slide decks zuruckgegrif is
+, as well as on the book design patterns of the Gang of Four (Erich Gamma, Richard
+Helm, Ralph Johnson, John Vlissides).
+Selected research articles referenced in the lecture and also find
+use. The lecture will be held in English language here weitestge
+immediately translated. Prominent exception is the concept of design patterns, the faithful here Design-Pattern appears as the Vorlesunguberschrift still.
+Furthermore, in accordance with the point of view of common sense rather than find words and words borrowed and
+should not be used too much.
+Larger concepts, which are still not explained and are being introduced for the first time, are
+by fats, narrow font with KAPITÄLCHEN excellent. Yet-to-be declared de-
+sign-patterns, and important terms and names of researchers are by Sta n da r d-
+times KAPITÄLCHEN highlighted with narrow font. Source code will be
+awarded by non-proportional font.
+All information and content is provided without warranty.
+
+
+
+
+4 Aßmann'S LAW
+
+
+
+
+
+Aßmann'S LAW 5
+0 Introduction
+The lecture explores different patterns with their respective
+incentives (incentives) should be described. He will be- weiterbarkeit variability and patterns for systems treated, with the aim to understand particularly frameworks and product lines. As an example, here the Produktli frameworks for- mitted be seen by cars. In modern cars is already 90% of the innovation achieved by the integrated software. Anyone who has not yet done so, can the chair for software technology with the Praktomat
+learning the Java programming language.
+Structures for large systems from 100 KLOC are under use of Lay- ered Frameworks modeled and facets. In addition, there is a description of a path for the object-oriented design, the role-based design.
+The structure is based on basic patterns to which
+interaction with frameworks. Building on this foundation, Pattern Languages be
+agreed and specific frameworks.
+0.1
+A number of standard problems Standard-Problemen in software technology can
+be solved with the help of so-called design patterns.
+Variability is under the exchange of parts of a reasonably observant had been designed
+. It may be to identify variations with complex parameters.
+It is static and dynamic variability differences. Of static varia-
+bility is the speech, if the design or compile-time different of
+adjustments be made. In the dynamic case, the replacement for the
+considered period.
+
+
+
+
+6 Aßmann'S LAW
+basic concepts of variability are so variation, replacement and setting parameters.
+What they have in common and it must be formulated Variabiltat. On this white,
+se we get a common part, which is mostly in a framework. By setting parameters of variation points can be a specialization. Here the
+design patterns used for example, are working with templates and hooks,
+template method, for example, template class and dimensional class hierarchies or also
+bridge. Creational-Patterns can also be used, these are factory
+method, factory class and builder. The Communication will be replaced,
+policies, or even material.
+Extensibility can help take into account the principle that software needs to be changed.
+At the same time, new, unforeseen variants supported. This evolution working
+writes a dynamic change. The object recursion in contrast
+to template method. Other patterns are OBJECTIFIER (strategy),
+decorator or proxy, COMPOSITE or chain of responsibility, visitor and observer. With
+facets can parallel, disjoint class hierarchies to use COM- men, by the layered frameworks can be built. With the un-
+ter variability the named Template and hook can
+be operated if necessary enlargement, not only variation.
+The glueing describes the jumper, adaptation and combination of
+components of different architectures, if these do not match (Architectural Mismatch).  The coupling of independent software is possible. Architecture Differences are used, for example, in communication protocols
+bypassed. The treatment is also heterogeneous components, with their representations, places (in the case of distributed architectures) and Kontrollflussstrukturen.
+An anonymous and scalable communications is a central part of the
+glueing.
+Another problem is the optimization of software, which often
+brings efficiency at the cost of flexibility. The flow of data and control statements in teraktiven applications can also be detected through the pattern.
+The basic tool of the ROLLENMODELLIERUNG deals with the various
+roles that an object can play in the application. This also provides information on how the design patterns appear. Design patterns can also
+
+
+
+
+Aßmann'S LAW 7
+by role models rather than through exemplary structural diagrams
+. Rollenmodell-Komposition , as well as Rollen-Mapping leads to Ent-
+litter of class diagrams in accordance with the design patterns.
+In the specific field of the framework-pattern variability is
+achieved with different hooks. This is instantiated by the Framework. Layered Frame- works for example can be modeled by the role object pattern.
+Considered in the course tools and materials allow the structuring of
+a application using metaphors.
+0.2 History
+at the beginning of the 70s came with the window and the Desktop The first
+conceptual pattern in Smalltalk at Xerox. 1978 Reenskaug developed
+the MVC-pattern ( Model-View -Controller).  1987 Was
+the first time the concept of Pattern-Language for software development, especially in the object-oriented
+programming, were discovered. This was done by Mr Cunningham, among
+others responsible for Wikis, as well as Beck, which in the development of the ex-
+treme- Programming-Methode was involved. 1991 Gamma his PhD-thesis
+to design patterns. 1994 We have to do it with the first PLOP, the Conference
+on pattern languages of programming. The book published in 1995 to Design Patterns of the gang of four, short GOF. 1997, Riehle the connection between Rollenmo-
+dents and design patterns. 2005 Finds the concept of the collaborations
+in the UML, which Klassen-Rollen models can be created.
+As the spiritual father of the Design-Pattern -ideology is Christopher Alexander dealing with
+tet. In his 1978 book The timeless way of building he lectured on patterns and pattern languages in architecture. It is found that the
+quality without a name, just the beauty of designs, you
+can not invented, but from Pattern-Languages must be generated.
+
+
+
+
+8 Aßmann'S LAW
+0.3 some definitions
+a Design-Pattern is the description of a standard solution for a standard problem in a specific context. It is targeted on the reuse
+of manure be used. We need a strict disregard of originali,
+indeed.
+The pattern contains a bad smell, a problem in the structure or a GRA-
+trophes. The good smell is the standard solution for the structure, while with forces
+of the context and the conditions are defined. The transformation is
+guided by the forces of bad smell to a good smell. The description
+from the GOF-book contains the name of a Pattern, motivation, commitment, solution, known use, related pattern.
+With the help of conceptual patterns describe terms from the in-
+wendungsdomane. Examples are the desktop and tools and materials.
+There is the use of patterns in a improved communication between
+developers and other initiates people. The result is a type ontology
+of software development. The documentation abstract design concepts will be un-
+and standardisation. Proposes a general simplification in the areas System
+complexity, testability, Evolution, documentation and reuse never-
+the.
+A design-pattern can be heaping a simple structure
+to the static or dynamic semantics of a system be understood. It is a nugget of insight (to Appleton).
+It can be the following types of patterns. The so-called
+implementation patterns are Programming-Patterns , also called idioms. You
+are depending on the programming language and are
+described by constructs of the programming language. Workarounds are idioms, which does not present a
+miscellaneous liabilities Programmierkonstrukt imitate. The so-called fundamental design
+patterns are not described as a language construct. Architectural patterns
+
+
+
+
+Aßmann'S LAW 9,
+the rough structure of (sub- )systems. The special Framework
+INSTANTIIERUNGSPATTERNS still be treated.
+An anti-pattern is a defective pattern with a bad smell within
+the application. It may be Spaghetti-Code , If-Kaskaden
+Nicht-Modularitat everywhere distributed casts or act.
+Here is some text, since two consecutive definitions typographically
+look pretty stupid.
+PROZESSPATTERNS are always in the term to do something. It occurs when
+automation e.g. in workflows.
+In addition, re-engineering patterns identified in the carrying out
+certain testing, e.g. the read of the entire code in one
+hour. Organizational patterns are about the well-known lines or matrix
+organization.
+A pattern language is a quantity of patterns for related problems
+in a specific domain. For example, tools and materials.
+
+
+
+
+10 Aßmann'S LAW
+
+
+
+
+Aßmann'S LAW 11
+1 Design Patterns
+The first chapter deals with the description of the Basic tech-
+nologies for Frameworks and product lines, the design patterns.
+1.1 Simple Patterns for variability
+basis for this pattern is the conceptual TEMPLATE AND HOOK pattern.
+So many products can be created from a code base. Examples are
+the Office-Backbone with the definitions Word, Powerpoint, Excel, etc. ,
+it is the incentive of the Patterns, similarities and differences. This
+will be done by means of a fixed template for many products, in which specific imple- mentierungen can be suspended. On the defined holes, empty
+spaces, hooks, slots or hotspots are bound by concrete values.
+Template method implemented Template and hook in the same class. Variable
+behavior is thus achieved by the invariant part of variants A algo- rithmus is disconnected. The hook can
+be made non-expandable or Expandable. Binding the hook is done by deriving from the abstract
+superclass, as well as implementation of the Hook-Methode .
+The difference between variability and expandability is that either
+only a unique binding, or the hook several times will be bound.
+The latter is derived a greater variation for product lines.
+The OBJECTIFIER pattern is based on simple polymorphism with objects, i.e. delegation
+. The Hook-Methode Template-Methode is pulled from the class and an abstract class with an abstract method, is implemented according to the variability, in order to achieve. In C++ there are
+also so-called functional objects for this functionality. Easy replacement is
+also possible at runtime, at the expense of more dispatch.
+
+
+
+
+12 Aßmann'S LAW
+template class implements Template-Methode Hook-Methode and in
+different classes. The consistent replacement of several methods of
+an algorithm. These exchanges may also be adopted at run time
+. The Pattern forms the basis for the other: Bridge Builder, Command, iterator, Observer, prototype, state, Strategy, and visitor. Binding the hook is done by
+deriving a concrete class from the abstract Hook-Superklasse , as well as
+implementation of the Hook-Methode .
+With generics for generic template class is also a static instantiation possible,
+resulting in fewer Runtime-Dispatch, type safety, and thus more efficient run-time behavior. The polymorphism is resolved, however, because
+of the static pre-selection. In the bounded Genericity is the instantiation with
+Generics Limited in the sense that inheritance only from a particular type should be interpreted as follows:
+gen.
+
+Different different incentives incentives
+unconstrained Objectifier Strategy Bridge
+constraining unconstraining
+TemplateMethod TemplateClass ClassHierarchies unconstraining Dimensional constrained T&amp;H pattern
+1: Connection of the simple Variabilitats-Patterns .
+
+Strategy has the same structure as template class, but here are the rol-
+len of the client and of the algorithm as an incentive in the foreground. The pattern
+also appears in the Model-View -Controller.
+In dimensional class hierarchies is also the variation of the templates.
+This is the adaptation of the Template-Algorithmus possible. In the GE- set to the weak variability in Template Class is now also the
+
+
+
+
+Aßmann
+Template-Objekte'S LAW 13 Change the for the various dimensions in the
+application. A Double-Variability on caller and Hook-Seite arises,
+as well as two separate class hierarchies, are connected by constraints.
+When using bridge is similar to dimensional Class Hierarchies
+. This means abstraction and implementation independent
+gig varies. Also, Template, and Hook-Constraints waived. You get several Bridge-Patterns combined facets. By the factorization
+of classes in facets will increase the reuse.
+For consistent variation in existing Parallelismus-Bedingungen paral-
+lel class hierarchies should be used. Here are bridges with constraints model
+. Consequently the dimensions are not independent. This can for
+example with the Object Constraint Language (OCL) are expressed in the model.
+If a particular part is selected, it is another mandatory. To run
+time should not only be enforced these constraints.
+In case of independent dimensions of multi-dimensional systems, the
+facets-classification used. This is
+implemented by Bridge or dimensional Class Hierarchies. The combinatorial space is modeled as effectively and the inheritance hierarchies less deep. The solid modeling with (multiple) inheritance is so bad, since the prospection of properties
+is very complicated and it overwrites. The multiple-inheritance in Java is also only permitted of interfaces, which
+prevents the reuse of code.
+A facet is an orthogonal dimension of a model. The abstract
+Facettenklassen form a model of its own. The inheritance hierarchy is simplified. All facets are independent and do not know each other. A final class as a unification of all properties of
+a facet can be modeled.
+Bridge is used, a central facet as an abstraction
+, it is possible to choose which all other than Hook-Klassen used. In this case is how
+worked without a core, a primary facet knowledge about the other
+
+
+
+
+14 Aßmann'S LAW
+ren facets along the bridge connections. However, this is more efficient
+for the memory. A logical object is modeled in the Facetten-Klassifikiation with multiple physical. This is always appropriate if several
+different partitions exist in a class. The advantage lies in the dynamic variation and the reduction of the number of classes. Disadvantages exist in the
+absence of a type approval for product classes, as well as lack of control over illegal combinations. It is also in this context also to whether
+project-schizophrenia. When querying the identity of a physical object can
+be no conclusions can be drawn from the logical. The memory usage for the Allokati-
+lion is increasing, while the speed of the application decreases. Especially the
+last few points speak against the use in embedded systems.
+To sum up, once more, that the use of facets
+classifications in independent dimensions of a complex model specifi- rates. Bridges are just interested in languages without multiple inheritance a
+sante alternative. In frameworks, in which Type-Checking
+Facetten-Vererbung is beneficial, should be used on.
+When you have just described procedure so called layered objects
+(layered objects).  If bridges are used, is the speech by independent
+facets. However dependencies can exist very well. These have been
+reflected in certain interfaces or contracts between the facets. A
+During modeling can be done here by Chain-Bridges, thus the dependencies of
+information of the lower layers will be taken into account. A layered Object Space describes the exchange of information between layers in a directed, acyclic graph. Here, too, the interchangeability of the layers
+, but the concept is widely applicable, due to the types
+to model dependencies.
+As a generalisation of layered objects and Facetten-Klassifikation
+layered frameworks and systems. A expression Facet-
+Bridge dimensional system, in which all dimensions are independent and one core is being used, in order to aggregate. The second variant are Facet- Bridge frameworks for facettenbasierte systems. Here one or more slices are modeled, while the rest is variable and on Multi-Bridges
+
+
+
+
+Aßmann'S LAW 15
+is aggregated. This Facet-Framework enables reuse on several levels. The mutual call produces the layered design of the FA- cetten and no area of facets.
+The facettenbasierte draft framework is a best practice to size Klas senhierarchien not completely by inheritance, to model
+based on partitioning. Facets are first identified and the modifiers, inheritance modifiers, version
+hierarchy factored in those facets. The implementation is then
+dependent on bridges, in facets are layers introduced and it is
+implemented via Chain-Bridges .
+In Layered frameworks with Chain-Bridges cut the classes through all layers, but not always for all classes is met. In Layered archi-
+tecture combines a layered object framework with Chain-Bridges . This varia-
+bility, expandability and setting parameters. The re-use on
+each layer is the basic idea. What I'm talking about here is also of stacked ASPEK
+(stacked aspects).  In doing so, the parameterization of the lower layers
+through the top. The aspect-oriented techniques for doing this are weaving and the View-based weaving, also called Hyperslice-Programming.
+With the implementation of hand can Role-Object Chain-Bridges and the pattern.
+Prof. Aßmann predicts that layered frameworks the most important future technology in the electives.
+
+
+
+
+16 Aßmann'S LAW
+1.2 Creational Patterns for variability
+to complex objects and variable effectively a lot Creational pat- terns can be used. In addition to creating the objects can also be enforced sistenzbedingungen.
+The factory method, or polymorphic constructor, is a pattern which
+is dependent. It overcomes the limitation of some object-oriented languages
+with respect to the exchange of constructors. This often is not allowed.
+In principle, such as in template method approach, whereby a product hierarchy is added to it, from which the Hook-Methode A selects. The hook method will, therefore, be a polymorphic constructor. Know abstract classes can simply abstract constructors and class that inherits from workflowpersistenceservice classes-
+struktor specialize.
+New subclasses for incidental extensions can
+be used via inheritance and reflection. This will make it possible
+to create any new product instances. This dynamic allocation makes the application knowledge of the slower. The possibility of a Default-Implementierung Super-Aufruf can be given via a. Common features can be used. The factory method is used in parallel hierarchies. She
+creates objects from a second hierarchy on the same level as
+Parallelismus-Bedingungen. With Generics Produkt-Subklassen can also
+be created.
+The principle of the Information-Hidings is implemented as follows. Abstract classes know only when an object is to be portion, but not what. This infor- mation is encapsulated in the subclass. A possible framework do not know with what concrete classes is working, but when. The application
+can freely determine its type.
+Be demultiplexed to a product family, this will be on factory class, or
+Abstract Factory. So the entire family can a variant
+on the other switch, grouped by the factory methods in a class
+
+
+
+
+Aßmann'S LAW 17
+. The abstract Factory provides an interface to families of related objects. So that is now at least
+three class hierarchies. The Factory-Hierarchie and two or more Produkthierar- Chien. The product hierarchies are being developed in parallel, the Factory-Pattern
+guarantees when creating the Parallelismus-Bedingung . This is used for example in Window-Styles , office systems and exchange of language modules
+in any application.
+A prototyping factory knows no concrete factories, there is only a proto-
+type, clones of existing products. Variability is due to the cloning of Proto- Type-objects. Only valid combinations of the products stored
+.
+A further possibility for a factory is the interpretive factory method. To
+add additional factory methods is a factory method with a parameter string used to initialize all factories, instead.
+The system in use of factories is independent of the way in which
+objects are created. The Konstrukturen are hidden to the type to ensure replacement. The use is located near, if complete Produktfami-
+lien together must be created. The Abstract Factory is similar to that
+with the Hook-Klasse and is often used as a singleton. In doing so, it will with Pro
+totyp-objects parameterized.
+Should be a factory using protocol implemented, the builder pattern is utilised
+. There is a structured product to produce, then, is a whole of parts. It
+is often large Business-Objects . The Builder stores internally about the progress of the construction of the object. The structure
+of the data, so the Protocol, the respective status and the implementation, similar as with an iterator. Examples are parser in compilers and database proje-
+ken with Integritats-Constraints .
+
+
+
+
+18 Aßmann'S LAW
+1.3 Simple Patterns for expandability
+with the following patterns are for example modeled parallel class hierarchies as the implementation for facets, as well as layered Frameworks built.
+Dynamic extensibility means that at run time extended White-Spots ge-
+fills can be. So far, only the static expansion and Variabiltiat
+by inheritance, and so treated.
+The object recursion is the basis for many of the Erweiterbarkeits-Patterns . There
+is a recursion in dependencies between classes instead. These are bequest motives also makes and aggregation. Depending on the multiplicity of the aggregation results in a 1-
+recursion, i.e. a list as Laufzeit-Struktur , or an n-recursion, which
+trees and graphs. The abstract superclass defines common
+conditions for terminators and Recursor. All can
+be treated in the same way, it will always be all the neighbors or children in a question on a composite object.
+The composite pattern is an instance of the n-ObjectRecursion. As older
+GOF-pattern, however it has been previously described and is less abstract. The
+client does not know whether a leaf or composite is edited. There is a simple and ches iterate over the nodes. This is the abstract superclass the Ver-
+sion. The vapors structure is dynamically extensible. Composite is the
+heart of the functional programming and Attribut-Grammatiken .
+Prof. Aßmann's favorite car, the Phaeton is
+modeled with composite to bolt, for the purpose of Total Quality Management. It is tra-
+cking possible for all components, and all components are implemented as Business Objects
+.
+The decorator is again a variant of the composite. It is by a Lis
+tenstruktur a shell, or even skinning, built. It is therefore
+in this 1-ObjectRecursion to a limited composite. A Decorator class is a subclass of class with a child of this class.
+The ultimate core, so the actual object is thus the Client ver-
+
+
+
+
+Aßmann'S LAW 19
+. A Decorator can be inserted later, in contrast to the Composi ting for video- TE, which is a previous design decision. The decorator approach can
+legacy code re-used, or a wrapper for libraries.
+There is a pre- and post-processing, while the actual action takes place in the center of the object. So you can of expandable objects inherently to which new features are added at runtime without inheritance. This is absolutely mandatory, if the inheritance hierarchy are too complex
+, or in a library is impossible. As a Decorator is used the in-game, in order to dynamically Core-Widgets to decorating, such as for example scroll bars and frames. Also can be made persistent objects at run time.
+
+Unconstrained
+Decorator Proxy Visitor
+ObjectRecursion ChainOfResonsibiliy Bridge Ù-bridge
+Composite Observer
+unconstraining unconstraining
+Dimensional ClassHierarchies Recursive T&amp;H pattern
+connection T&amp;H Patterns constrained
+2: Relationship between the Erweiterbarkeits-Patterns .
+
+For the ambitious Hacker COBOL the ability to
+overwrite function names and for C can be tricked out of the left, so as to dekorie-
+ren. There are other variations of the decorator in the omit the abstract Su
+perklasse, if only one expansion is envisaged. It can also include a de-
+
+
+
+
+20 Aßmann'S LAW
+corator-family in a hierarchy of joint replacement consistently for all
+objects.
+The possibility of linking Decorator-Klassen allows,
+add as many new features. In fact, it is a special chain of
+responsibility, in the first and last the downsizing the Decorator-Klassen-
+che object.
+The traditional chain of responsibility is the delegation of a action to
+a list of delegates. It is the daisy chain principle used in the Ver-
+looking for a problem to solve or pass so long, until it is resolved.
+Just as in the bureaucracy is an inde- the responsibility for a service
+. It supports dynamic calls. After the recipient of the
+report is to be determined at runtime, as well as unknown at the time of the allocation. This is a basic
+principle of Service Oriented Architecture (SOA).  The chain is to be determined at runtime Dyna-
+mixing with new receivers can be extended. The anonymous communication before,
+that the identity of the recipient or multiple recipients is not important. Since
+there is no final Leaf-Klasse there is, so there are no Back-Arrow to abstract Superklas-
+se, must be the end of the chain with a NULL-test. All
+classes involved only know about your successor know.
+The proxy is a limited Erweiterbarkeits-Pattern , since it only once
+is expandable. A proxy class is considered to be representative of a real object, which is hidden from you. The structure is similar to the decorator, but there is only one direct pointer to Schwesterklasse and no Objekt-Rekursion . So there is no collection-
+ten proxies. Instead the proxy collects references to real object or
+Facetten-Objekt .
+There are many different variations: Smart Reference Indirection Proxy (makes the subject interchangeable), virtual proxy (creation on demand), the remote proxy, caching proxy,
+Protection Proxy. A proxy ensures controlled behavior, even if the
+actual subject is destroyed by so-called dangling edges
+are avoided. These are references into the Nirvana. In C++ is the ability to overload the arrow
+operator possible and thus the possibility for proxies directly in the language
+. Modula 3 offers with the ordered a Smart-Pointer concept the possibility
+to avoid crashes.
+
+
+
+
+
+The visitor is Aßmann'S LAW 21 according to Professor Aßmann a Ugly-Pattern . It overlooked the restrictions
+when Double-Dispatch modern object-oriented programming languages. Ada95 offered a method call to the syntax f(o,P1,P2) with the first ar- gument the Receiver-Objekt. This is a Smooth-Extension the functioning national programming. The usual syntax O. F(p1,p2) is considered correct by purists. The polymorphism on multiple arguments is now achieved with the Visitor-Pattern. It is an instance of the dimensio- nal- Class-Hierarchies patterns. There is a polymorphic data structure, the Template-Hierarchie . This is a polymorphic algorithm, the hook- hierarchy. Both hierarchies can easily be extended. The Double
+Dispatch is carried out first for the dependent dimension. To do this,
+select the object in the Produkt-Baum Accept-Methode with a Visitor-Klasse and the called as an argument. Then there is the choice of the algorithm by the reputation of the Visit-Methode populated by the visitor by the product, it is
+a , self-reference passed as an argument. Each visitor with each
+element works together. Only by this can construct the Context GSD escalates it
+, otherwise, it would have to Switch-Statements or other programming
+language will be used, for example MultiJava. Here Multi-
+methods can be grouped.
+When you add new methods is the effort to use the Visitor-Pattern low, since only in a hierarchy changes need to be made.
+The visitor is as a layer in a layered designs possible. By the ge-
+separated hierarchies will also simplify the reuse of code.
+A Ù-bridge is a bridge with a collection of hooks. The hook-
+methods in all Hook-Klassen will be called in the template.
+The Observer pattern is a kind and allows the Event-Bridge loose Kopp
+of communication. An update on a subject fires an event to the
+observer, which itself has a mechanism
+requests the required condition of the subject. The subject is so regardless of observer, but the Obser-
+ver knows his subject. He must register anonymously in the subject. Therefore, the dimensions do not completely separate as the bridge. Multi-cast and broadcast can be implemented. Imp is here associated by hand-
+
+
+
+
+22
+lementiert Aßmann'S LAW. It is also possible to
+implement a push mechanism in the has one notify method. The observer is also a link in the Model-View -Controller.
+About a change manager, Event-Bus mediator or also a mapping can
+be managed from the subjects to observers. Filtering and cascading of events
+between them can be realized.
+This approach is in window, i.e. interactive frameworks with Event
+Cues ubiquitous. For Macintosh computers is still unfinished in the nano biology lab in
+this way ensures the interprocess communication. With this expansion,
+traceability to the runtime is also realized the Software-Cocktail -mixer (a carmaker in this segment,
+, project to create applications on-the-fly).  For more information
+: http://www.eecs.ucf.edu/~leavens/FoCBS/assmann.html.
+
+
+
+
+
+Aßmann'S LAW 23
+1.4 bridging Architektur-Inkompatibilitat
+incompatibilities of architectures are bridges between modules. This is operated in the Enterprise Application Integration (EAI)
+legacy systems and, for example, which connectors between the ports
+will be developed. An example of this is AESOP of GARLAN, Allen and OCKERBLOOM.
+Problems with the components and connectors. Reasons for this are different assumptions about the component model, the global archi- tecture combines structure, the design process (libraries, Language), the data model (which you created
+Dell (date format) and the model. Protocols can also be incompatible, if fundamentally differently to asynchronous and synchronous communications
+is speculating. The component model there are interfaces and Exchange availability and describes the interaction of the world with the interface
+model. The Typ-System describes the domains and thus the Application-View
+on the world. Most of the databases are fundamentally ill-designed for applications
+in the context of information systems. You are not so
+persistent objects, but also to make it appear as a black box with secure input
+and output in appearance. They are for "master of the universe", rather than
+to integrate into the application.
+All solutions are based on assumptions and to make explicitly to
+identify fraudulent cases. Unfortunately, there are a few formalisms for this purpose. Implicit assumptions ver-
+last the Information-Hiding principle and prevent variability. Components
+must generally independent designed and Bridging arrives it will offer to your disposal and
+will be made available. Architectural styles have to be distinguished. For all of these
+requirements can be used design patterns.
+The use of Erweiterbarkeits-Patterns can bridge behavior. Chain
+of Responsibility can adapt filter objects and behavior. For example Proxy can be used for the translation of data formats. Observer adds
+additional behavior to be monitored by events, while Visitor for example, new algorithms for a Datenstrukturhierarchie allows. In order
+
+
+
+
+
+to circumvent Daten-Inkompatibilitat 24 Aßmann'S law can be used as a decorator is
+adapted behavior as the wrapper and bypassed. However Protokoll-Inkompatibilitaten can
+not be corrected. The bridge can designs for different platforms
+factorization. Abstraction and implementation components are independent.
+As a new pattern will be introduced in this context of the adapter. It is a
+proxy, an interface on a different map. Protocols
+and data formats can also be adapted. Because the Adapter is only happened once, is the adaptation of the Kontrollflusses however difficult. It is delegation use. Standard interfaces are used in componentized models. If classes with application-specific interfaces exist, Adapter
+pattern Mapping. The adapter interface inherits from the destination class and
+adjusts the interface of the adapted object. A late insertion of
+such an adapter is possible.
+A facade is a Objekt-Adapter , the hidden a complete subsystem. It
+can also be considered as a proxy. The own interface is on the the
+objects were mapped. There will be interfaces, data and log in a Runtime-Bridge connected. This is similar to the decorator, but happens without
+the recursion. The facade has an exclusive right to external libraries or
+subsystems.
+The Class Adapter uses delegation to adapt rather than multiple inheritance. Since this is not possible in all programming languages, for example, can be used with Interfaces in Java only, which
+prevents the reuse of code.
+The 2-way Class adapter provides a Role-Mediator. He has more than one target
+class and each plays a specific role of a concrete object. All hierarchies are linked in this way. The 2-way as a decorator and Adapter for pairing of hierarchies result in a chain of strategies, for example for
+a Daten-Generator .
+With a mediator, or brokers, too, is an n-way proxy for communication in
+conjunction with Bridge. This is a central concept in CORBA, where a Web Service Broker Services, their interfaces with the Web Service
+
+
+
+
+Aßmann'S LAW 25
+Description Language (WSDL) are described. This allows an anonymous communication and the building anonymous communication networks. A
+Proxy-Objekt hides the communication between partners, all of which
+use a Me- diator-object. With a bridge the communication partners are
+connected. Mediator and Partner-Hierarchien
+incorruptible are estimated independently of each other. The observer with change manager combines still observer using the
+Mediator pattern.
+The Pattern Repository connector allows the collaboration tools without mutual knowledge. This is done through the pairing their repositories, such as
+of 2005 with the help of Stölzel Lazy-Indirection -proxies. It is a
+selected Master-Werkzeug Slave-Werkzeuge , and the others are in the Repo- sitories the Master-Repository only is mirrored. The actual Repository
+is removed and a Adapterschicht Slave-Tool fed from. The real
+classes are then created Master-Repository on-demand.
+Different assumptions are therefore with Erweiterbarkeitspatterns can be bridged.
+
+
+
+
+26 Aßmann'S LAW
+1.5 Usability Design Patterns
+of the use of design patterns is usually domain-specific and is carried out in companies
+that are for example with bank or telecom software.
+Pattern for the problem can either be written or Losungsdomane. The terms used are either from the user
+domain or from the Entwickler-Domane .
+Important is the construction of a catalog for the company, a so-called experience
+factory. Your are in both domain and company-specific patterns
+. There were three groups of Pattern-Benutzern identified. Can you describe Pattern-Gurus Pattern-Benutzer, while you
+can only detect and install. General Pattern-Ignoranten can do anything with it.
+The challenge of dealing with the Patterns are therefore, as the focus on the common ground must be placed. This is difficult, but very important.
+The pattern-mining is an iterative process, to identify and
+describe patterns. Key questions are: why was designed? Is the complexity
+really nutzlig? What are the underlying assumptions? Are the assumptions realistic? What will happen in 6 months, when new features are needed (modularity and expandability of the pattern)?  All of these things should be in inter-
+views with the domain expert will be discussed. The resulting pattern must be
+short, compact and built up from existing designs. It has to be in the rank of
+a best practice.
+Pattern lead to improved communication, but its effects are difficult to measure. Another interesting side effect of it is that pattern by simply pressing a forgotten requirements can be identified. This happens
+when the description of a Pattern only partially with the requirements on,
+clinging.
+The following table has been taken over from the GOF-book and
+contained therein is the possible Variabilitats-Aspekte design patterns in an overview.
+
+
+
+
+
+Aßmann'S LAW 27
+Purpose Design Pattern aspect(s) that can vary
+Creational Abstract Factory families of product objects
+builder how a composite object gets created
+Factory Method subclass of object that is instantiated prototype class of object that is instantiated
+Singleton The sole instance of a class
+Structural Adapter interface to an object
+Bridge Implementation of an object
+as a decorator Responsibilites of an object without subclassing
+facade interface to a subsystem flyweight
+proxy how storage costs of objects an object is accessed; its location
+Behavioral Chain of Responsibility object that can fulfill a request
+command when and how a request is fulfilled
+grammar and interpretation of a language interpreter
+Iterator How To units's elements are accessed, traversed
+Mediator how and which objects Interact with each other
+memento what private information is stored outside an object, and when Observer Number of objects that depend on another object; how the dependent objects stay up to date State States of an object
+Strategy algorithm Template Method steps of an algorithm
+Visitor operations that can be applied to object(s) without changing their class(es)
+Table 1: the design that can be varied with design patterns (GOF, page 30)
+
+
+
+
+28 Aßmann'S LAW
+
+
+
+
+
+Aßmann'S LAW 29
+2 role-based design
+in this chapter, the differences between roles and objects, Rollenty pen and classes are shown. Central points are the Rollen-Mapping to
+classes and the Rollenmodell-Komposition . Design patterns can also
+print out as role models, then transferred in Klassenmodelle. Composite design patterns described by Rollenmodellierung BES-
+ser. There are different types of roles are considered as semantically non-rigid types,
+layered frameworks can be print as role models. Overall, it is the approach of the role-based design to optimize
+use of frameworks and design patterns.
+REENSKAUG, Smalltalk and the Model-View -applications scenarios are better enabled worked, says
+"UML did it all wrong".  UML has small lollipops now offers the possibility of
+using print, required and provided interfaces. This can also
+be used to model specific roles of objects.
+The concept of roles is located on the Objekt-Level Objektorientie- in the
+statement. The role is a dynamic view of an object. It is variable and
+represents a specific aspect or service.
+There are different types of roles, however, are located on the Klassenlevel. They are the service
+types an object, so that dynamic Sicht-Typen . You can change Dyna- mixing. An object plays a role of a role type for a certain
+period of time. The roller type is part of the minutes of a class and is often as inter-
+face. It is based on a collaboration with a partner.
+A role model is a quantity of Objekt-Kollaborationen and is
+described by a lot of different types of roles. It is a conditional description for
+classes and Objekt-Kollaborationen .
+The classes-roller type-diagram is a UML-class diagram, which by
+oval in the classes, which roles, augmented. It can freely
+
+
+
+
+30 Aßmann'S LAW
+big many be active. Be used between the rolls so-called roles and
+constraints.
+The central Modellierungsfrage is: what role an object in the allo- The context? Equivalent is the question of whether the responsibilities of the
+forthcoming mid and what condition it has a context. When using the CRC Karten-Methode ( Class-Responsibility -Collaboration) are envisaged the roles to responsibilities. The method is suitable for roles but only if
+there are very many collaborations.
+When role-based design with role models always focus
+on the collaborations. Each collaborator is a role. The roles classes into smaller pieces. The focus is on the context dependence.
+You can also from the separation of the aspects or matters (con-
+CERN's) speak. The role model
+of the separate Wiederverwendungsmoglichkeit class model is particularly noteworthy. The procedure for the rollenbasier-
+ten draft is as follows. First, the role models. The roles are separated by mutual conditions revealed. It is important, which object performs the role. In the second step, the merged role models. It will also see the development of new working conditions between the roles of the models produced. The third is the
+mapping of role model on class diagram. Roles are
+mapped to classes, taking account of the conditions. This is also spoken of weaving. Note that from a role model
+can produce several different class diagrams. There is a variability in the
+model.
+For design patterns is the composition of role models in the same shape
+. It is important to note that classes are static and roles together, these, in turn, are dynamic. Combine Klassenmodelle role models,
+as also the dimensions and aspects can be called. Partial classes, models with open Roles allow subsequent, more composition. In the Model
+Driven Architecture (MDA) and the mapping to the Rollenmodellierung
+classes be understood as an additional transformation step. The Business
+
+
+
+
+Aßmann'S LAW 31
+model is shown on the class model. The roles are plattfor-
+munabhangier as classes, since the former is logical and the latter physically.
+
+o Role-Use :
+A class requires a different role
+o Role-Implication :
+An object which plays a role, you must also have a other play
+o Role-Prohibition :
+Excludequalification between two roles
+o Role-Association :
+an object, which plays a role, 0..ù1
+knows an object, which the different role to play
+o Role-Equivalence :
+Object mussbeide role to play when it already plays a
+o Role-Implication -Inheritance:
+emphasis on that role can be inherited
+Fig. 3: Constraints in the Rollenmodellierung
+
+the manual implementation of roles can be performed via interfaces.
+However, the code must be written by hand, without the possibility of
+re-use. For languages with multiple inheritance will be two layers
+of classes, standard classes and roles. The use of Mixin
+classes, which are supported by some programming languages, the rolls are Mixins, composed in a class. The Eiffel offers here include inheritance as a language construct. With a Rollen-Objekt Multi-Bridges
+created for a role, a nucleus then aggregates all together. The difference between
+roles and facets is that a Faceted-Klasse any many Rol-
+lendimensionen can have. Each facet represents a role type. They are independent of each other, but static. The facet remains over the entire
+lifetime of the object.
+
+
+
+
+32 Aßmann'S LAW
+expressed as role models are design patterns, one can consult
+Participant-Sektion in GOF-book called. Already here, you will notice that the structure
+is very similar in many patterns. Optional roles are often specified, since the description is not standardised. An engineer identified and shall designate the
+roles in the Struktur-Klassendiagramm specifically for the design pattern to what the
+mapping of role model on class model.
+The creation of larger patterns is possible through the composition of roles models. This is used as an example the BUREACRCY pattern, which
+is used for organizations with trees (see figure on the cover of the do- kuments).  In addition, the Model-View -applications scenarios are better enabled by role model-
+composition be understood. This will be in the documents for the lecture
+shows in detail.
+The Riehle-big-law for composite design patterns says:
+the role model of a compound Desgin-Patterns consists of
+the role models of the participating design patterns .
+From the Riehle-Gross -law be concluded that complex patterns are easily dismantled in easier. Through the understanding of a design patterns as a
+role model are also variants of a single more easily comparable. For
+example, the conceptual pattern template and Hook explained.
+It is here based on a Mikro-Pattern , derived method, additional
+template method and hook method roles. In Template Class is a ver-
+erbungshierarchie implies for the hook.
+With different role models can be
+so subtle differences between patterns also syntactically expressions. The purpose of the pattern is aufgeschrie- Ben. The draft will be explicit, precise and formal. The Pattern Mining
+can also be done with roles.
+In the comparison with HYPERSLICES, or views, which is a similar concept to
+implement, because they also on other abstractions as classes and properties
+work, falls on: role models do not need dimensions and layers, you
+
+
+
+
+Aßmann'S LAW 33
+are free. The merging of views is but as well as for roles,
+roles are however also possible constraints.
+The comparison with facets shows that a facet is a Produktverband employed and with a logical object. Role models can
+cut multiple objects. In fact, it is the precondition for the existence of roles a collaboration, always takes place between two or more objects. A fa-
+cette is as a role of a object from a finite number of Facettendi- mensionen, the cross over the entire lifetime of the object exists.
+The distinction is also important in rigid types and founded, so-
+called it shows types. For example for the first is the type "book", if an
+object has a semantically rigid types, it can never stop to have this
+without losing the identity. The Klasseninvarianten type belongs to. Heidegger
+and Kant were "the thing itself" name. Not semantically rigid types
+indicate the dynamic state of an object. Founded types, such as for example the "Reader", are types of object, which is always kollaborie-
+ren, or associated with another object.
+There are different types of roles are founded and non-rigid, natural types are not
+founded, and semantically rigid. You can stand by itself.
+Rollenmodellierung has the following effect. Delegation can be scaled.
+By default, all roles on a class, but you can also remain sepa- Council. The fine-grained disassembly of objects in such a small parts as possible
+later offers all the freedoms for assembling. Layered frameworks
+on Role-Objects parts all roles. If the slices are merged
+and decreases the variability in case the efficiency is increased. This follows from the decrease of
+delegations, allocations and flexibility. The legality is
+cemented in ATE- man's Law.
+The law of Aßmann streamline design pattern says: If
+a variant for a design pattern is sought, the more efficient is to search the role model and tests for the merger of the classes
+roles.
+
+
+
+
+34 Aßmann'S law
+in the implementation of Rollen-Bedingungen is to note that the role and
+implication in two classes, a class, or upper and subclasses
+can be imple- menting and thus large freedoms. Role-Implication -Inheritance
+allowed but only inheritance. The choice of monolithic or split
+objects is a very important design decision.
+The object-oriented framework for enterprise SAN FRANCISCO from IBM has been re-designed source planning, but failed because despite Java-Basierung FEH- lender of Rollenmodellierung. It was only used Einfachvererbung. SAP takes into account in your Framework Laufzeit-Variabilitat and flexibility. Open roller
+lentypen in frameworks can be understood as hot spots and
+also allow the joining of several frameworks.
+The number of Laufzeit-Objekte , references and fragmentation is dependent on the mapping. The calculation of the physical objects is a tailoring
+. The class model is therefore not the holy truth, but the imple-
+mentierungs-truth. There is a variability in the parent
+models, for example is managed by the MDA.
+On 11. December 2007, Stefan Hermann its programming language object teams presented at the Technical University of Dresden. There is implemented a role concept. The
+associations will be dissolved in classes and references in the transition in the
+implementation. Many design patterns are already obsolete by the work here with this language. Composite and chain are also here as a
+structural pattern, but will be simplified, as mediator and observer
+. Information objectteams.org.
+
+
+
+
+Aßmann'S LAW 35
+3 frameworks and product lines
+the design patterns described in the previous chapter are the basis for the
+understanding of the Framework. It is Software-Konstrukte ,
+are designed for a general functionality and allow specializations
+. A framework is itself is not a stand-alone program and
+must be expanded and instantiated at defined points.
+3.1 Framework Variation Patterns
+The goal of this chapter is, Framework-Hook patterns to understand which
+build on the variability of the Template-and- Hook-Konzeptes. There will be more to
+refinance Frameworks explains.
+The link with design patterns is that they first
+discovered during the Framework development. Design Patterns are therefore components of frameworks, some are usable as Framework-Variations points for Variabili-
+indeed, expandability, for product lines.
+FRAMEWORK-instantiation takes place via open rollers (hotspots) in accordance with the
+work of Riehle and big. Frameworks are
+modeled as Klassenmodelle with open roles, which work as hot spots. It is Rol-
+lentypen, which has not yet been assigned to classes. The quantity of this role
+types is also as "integration role type set".  The instantiation ge-
+schieht now by binding of different types of roles of classes, taking into account
+of constraints. The social model is therefore the connection between Framework
+and the client. In contrast to the Hotspots also exist in the
+form of bound Frozen-Spots , there are different types of roles.
+A merger of frameworks is possible by using the different types of roles of egg-
+nem Framework to the classes of another bound.
+
+
+
+
+36 Aßmann'S LAW again
+the constraints must be taken into account in this context. Role models are therefore the conjunction
+between frameworks, or Framework-Schichten . This simple Rollenbin-
+dung can also be well elaborated.
+Prees framework-hook-patterns describe the roles of classes at the edge of the
+Framework. It is Variations-Punkte with the template-and-hook
+Pattern (T&amp;H) as the conceptual pattern. This is called mash Meta-Patterns , Prof.
+Aßmann as role models. It will be the work of mash with
+those of Riehle and large combined. The T&amp;H-pattern consists in the role model from two rolls, a template in Role-Use -relationship with a hook. It is an integral of a flexible part separately. By overlaying attempted a different pattern, for example, the to the observer pattern, used to be modeled.
+This allows more constraints and will therefore formally informa-
+tion on the pattern can be made explicit. Mash has 7 Framework-Hook -
+patterns identified with Riehles Open-Role -hook. The template is in the- mer to the Framework and the hook on the application.
+
+TH Minikonnektor Aggregationspattern coupling by Template-Hook -role model
+O1-th variability, H is part of T
+T H
+on-TH expandability,T has n parts of H
+n t h
+4: The T⎯H Minikonnektor.
+
+
+
+
+
+Aßmann'S LAW 37
+The Template-Method -role defines a template, which is the hook- method calls. So Framework-Hook patterns generally provide Design
+Patterns on the edge of the frameworks and place the T&amp;H-role model.
+T&amp;H meta-pattern + standard design pattern = framework-hook-pattern
+of the T⎯H Minikonnektor is printed with the pattern template class and Di-
+mensional Class Hierarchies in the 1-T⎯H variant. For the n-
+dimensional Class Hierarchies T⎯H variant can also be used. In addition Observer,
+Bridge for layered frameworks. The Minikonnektor stands for black box Frameworks, since the Hauptbeziehung delegation is the framework
+remains unchanged.
+H &lt;= T Minikonnektor RekursivesVerbindungspattern ObjectRecursion, H is in the composite as a decorator or composites class
+O1-H&lt; =T Decorator, deep list extension
+T H
+on-H&lt; =T Composite, deep graph extension
+N
+T H
+5: The H&lt; =T Minikonnektor.
+
+The H&lt; =T Minikonnektor Hook-Klasse from the template class can be the heirs, the template is also part of the Hook. The pattern is located between black-box
+and white-box, because the template class in the framework of the Hook-Klasse derived and is called in the application.
+
+
+
+
+38 Aßmann'S law
+to the TH the Unifikations-Pattern Minikonnektor combines the template and Hook-Klasse . Chain of Responsibility can be implemented as a 1-th. Recursion
+is carried out on the abstract superclass. Have each class in the white, an other hidden, unlike Object recursion. This can be used in event handlers.
+
+TH Minikonnektor Unifikations-Pattern Template and Hook combines
+o th Funny-Decorator o 1-th
+th th Funny-Decorator with chain
+on-TH Funny 1-to-n-Decorator
+th
+n
+6: The TH-Minikonnektor.
+
+The exchange of template methods and hooks can only be done together.
+Referencing the template methods are not abstract and concrete hooks.
+The melting together of different types of roles as in the TH Minikonnektor means quick
+, but less flexible applications. A monolothische runtime
+structure results from the fact, as well as close co-operation between the layers.
+It can be done by a "degenerated as a decorator will be discussed.
+The H&lt;t Vererbungspattern is suitable only for Whitebox-Frameworks. It is the opening of the luxury class and modifications. Overall, with all Minikon- nektoren reached a precise notation.
+
+
+
+
+39
+Prees Aßmann'S LAW first law for Framework-Instantiierung : Based
+on a Design-Pattern Hook-Pattern a framework for variability, the FRA
+mework, varies, is not extended.
+Prees second law for Framework-Instantiierung : a framework based
+on a Erweiterbarkeits-Pattern Hook-Pattern- , the Framework
+, but does not vary.
+From the two laws that if a framework not on a fixed
+quantity of variations should be limited Erweiterbarkeits-Patterns
+must be used.
+
+H&lt;t Minikonnektor Vererbungspattern reuse of T by deriving from H in application
+also furTemplateMethod oh&lt;t
+t h
+Fig. 7: The H&lt;t Minikonnektor
+
+there is a very large market for Framework-Instantiierung . Examples are the
+SAP-framework and the Gebos Zullighoven-Gruppe . The latter comes with over
+1000 people's banks and savings banks. Many firms have in-
+House-Ingenieure , the extensions and Extension-Points design for themselves.
+External plug-ins are also produced. Software Engineers have
+a different profile than Framework-Ingenieure .
+SAP provides the framework for the Lightweight-Instantiierung the so-called
+"business by design", which makes it easier for the Solution Manager nearing finalisation
+(SMI) is, in-house Hosting and instantiation.
+
+
+
+
+40 Aßmann'S LAW
+3.2 Framework Extension patterns
+as expandability for frameworks is mandatory in the following the manage- ment pattern discussed ensure that this is the case. The development of GE- refinance frameworks will result from it.
+The extension objects pattern addresses complex objects with optional exten-
+ments, but from a client are added and removed. For
+emis- sion targets an extension must be made, otherwise no designation for a dictionary or a map. Here are the names on
+the Extension-Objects shown. The advantage of this pattern is that whether
+projects can be divided into simple parts, optional roles are modeling bar. Extensions can also be added dynamically. The
+part is that the clients are responsible for the management and
+even more complex. Extension-Objects also lead for object schizophrenia. This refers to the fact that a part of an object
+, not the identity of the entire logical object knows.
+
+H= t Minikonnektor Extension Object-Pattern Tbesitzt parts of H
+O1-H=T ExtensionObjekt with an extension
+T H
+on-H=T ExtensionObject with multiple extension s
+T H
+n
+Figure 8: The H=T Minikonnektor
+
+
+
+
+
+Aßmann'S LAW 41
+The Extension-Objects Pattern generalizes the role object pattern. This is the case when multiple objects the same extensions as a
+role to play. A new H=T Minikonnektor is introduced.
+An example for frameworks with layers is the aforementioned GEBOS-system,
+which is based on banking applications for 450 banks. There are appli-
+cation-layer, Business-Section Layer Business-Domain layer. In addition, there is the
+Technical-Kernel Desktop-Layer and the layer. The coupling between the FRA
+mework and application systems, has been minimised. Different facets for products, Business-Domanen are modeled. The Role-Object pattern is used for this purpose, which the coupling between the layers is minimized.
+A line of variation is for the Volks-Raiffeisenbanken
+Sparkassen-Gruppe , as well as the implemented with their separate IT departments. The whole
+concept is also transferable to other domains.
+
+TRH Minikonnektor Role Object-Pattern T2 has parts of the type H H and T2 inherit from T1
+on-trh RoleObject H
+n
+T1
+T2
+Figure 9: The trh Minikonnektor
+
+Role-Object -pattern is used for Extensibility and variability and
+realized a dispatch on all layers in the application. There is a
+common abstraction of core and roles. The implementation of the system can in a first variant by a stack or as a decorator, causing a chain of ROL
+
+
+
+
+42 Aßmann'S LAW
+len. A second variant is the implementation in a core with its Rol
+, where a role is the other knows. Changing the non-
+rigid types, i.e. the roles for a change in state. In the variant with Deco
+Configurator can be a mediator. A core layer in the form of a black box with from core objects is extended with Delegierten-Layern. Each konzepti- functional object is distributed across all shifts. This includes the core and his
+roles together conceptually, the roles each provide a view of the/- nelle object and can be changed. The resulting trh-Minikonnektor is based on the N-H&lt; =T-Minikonnektor, i.e. the n-Object-Recursion and Composite.
+Rollenobjekte can also be understood as a body object dekorie- ren. But it is not as a decorator, because it leads to a core several Rol- len. In comparison with inheritance is that single inheritance only an instance of a subclass at a time. By polymorphism can
+change the- se. When Role-Object -Pattern There are many instances, all
+can change. You can speak of Rollen-Polymorphismus. In doing so, only the changes in the base layer effects on the other layers. This means that it is not just variability, but also unforeseen states
+and dynamic extensibility is possible. This is done through the introduction of
+new layer. Inheritance is introduced between the layers, so difficult to replace a single layer. This can also be a reason for the failure
+of the San Francisco frameworks have been from IBM. Instead, mini-
+Connectors on roles with template and hook are used.
+The Ù-bridge there is no inheritance between the conceptual object
+and core, as well as roles. When Role-Object -pattern is inheritance also between the Rollen-Objekten possible. Independence is not enforced. It is also a conceptual object no fragmentation with facets, but
+the realization of the conceptual object as the primary dimension, which is the core and secondary dimensions, the Rollen-Objekten . Facets are independent
+, the layers do not need to know the implementation with Multi-
+bridges.
+The result is a dispatch on all layers. This is natively in a per-
+grammiersprache only possible if multi-methods, are supported. This is
+
+
+
+
+Aßmann'S LAW 43
+for example CLOS, or Multi-Java the case. A
+hierarchy with generics can also be made by Generic-Expansion flat.
+The GENVOCA pattern of Batory and SMARAGDAKIS uses the Mixin-Konzept . It
+is class extensions with Klassen-Fragmenten
+be parameterized by the superclass. A Mixin is a class set up again and
+so that fields added. In this way, and roles and facets imple-
+mentierbar. The nesting makes
+the gene Voca-Pattern Mixin-Parametrisierungen several of these. Product lines can now be implemented by
+different variants for an abstraction layer with Rollenschichten cor- respondieren, are offered. Because Mixins are embedded, you have a
+identity is always for the entire logical object, there is no object
+schizophrenia and more efficient run-time behavior. This follows from Aßmanns Ge-
+sit down, as the roles on an object will be reunited. The Rollenkomposition is
+therefore static and does not allow dynamic variation. Each abstraction or mi- xin-layer stands for variability, new layers for expandability. It is the replacement of the entire layer, to create a different product. It
+results in a matrix with variable roles. On the vertical axis are
+the objects, the different variants of horizontal Rollen-Schichten .
+Large product lines are feasible.
+The separate implementation with Inner-Classes Rollen-Mixins all parameters and not the entire layer
+as a whole.
+Mixins are not included in standard languages. For languages with full Generici- ty-concept such as C++ can be used a workaround. A Layerkonfigu-
+ration is defined in a class on Template-Programming.
+Layered Mixin-Frameworks boundaries to layered Rollen-Objekt - framework as follows. It is the same concept for modularity and expandability, the only difference is in the Minikonnektor, once the
+Role-Object -pattern used, other times the gene Voca-Pattern .
+Layered frameworks are available for the dream of a single draft. For example, in the Semantic Web aspects will be separated. The AR-
+such high regard abroad primarily because it is cast in a removable component model. The application
+itself consists only of user and Anwendungs-Constraints . The core
+
+
+
+
+44 Aßmann'S LAW
+concepts will be realized by a Komponentensprache. The exchange of
+not only, architectural elements and user requirements is a piece of
+cake.
+
+
+
+
+
+Aßmann'S LAW 45
+3.3 Tools and Materials Pattern-Language
+the intention, to make Pattern-Language applications based on this
+is that traditional programs to the users often very narrow.
+Room for maneuver and freedoms in the sequence of the activities are often not
+there. With the tools and material approach (TAM) should people
+feel com- petitioner to perform specific tasks. This means that there will be no
+fixed workflow, but flexible arrangements with tools on
+. The user decides on the organization of work and the
+environment. It can be realized as incremental work.
+TAM you can view more detailed implementation of the 3-tier architecture. LETZ-
+tere is still too coarse for interactive applications. The central metaphor is the tool and the material from the craft. This means people
+use tools as a means of work. In addition, people with material.
+The surrounding area is the small-scale work.
+Material are passive entities, on which no direct access is possible. There is
+a code of values, for example date and money. These values are timeless and have
+no position and identity. Their equality is found in value and they are domain-specific and cannot be changed. On the other hand can also be material objects. These are zeitbehaftet, have a position and specific identity.
+This is the equality by name. Shared access can be done via references, changes can
+be made to objects that the identity persists.
+Tools are active entities. They contain knowledge about how efficiently with working
+agreed material can be used. Tools can be described as a view on a material and provide feedback to the user about the current status. In the best case, tools transarent and lightweight, without
+completely to disappear. You can also be structured. Many tools can be used on a material. Tool is active and has control, the material provides the data.
+
+
+
+
+46 Aßmann'S law
+as the last item in the TAM-approach can be considered the work environment.
+It is used for the organization of tools, materials and collaborations. Material-Facotires Werkzeug-Factories and it can be offered. The AR-
+beitsumgebung is Workshop and Desktop for the planning and work.
+The tool material collaboration Pattern Determines the relationship between the tool and
+material in their mutual context. The tool has a view of the material. This role as a material is visible as an abstract interface for the tool and defines the operations. The names of the
+roles usually follow the naming scheme of "Listable", or even "Editable".  The nearing finalisation as object orientation is also next to Interface Adapter, Decorator, Role object, or
+through the Gen Voca-Pattern possible. The result is a Tool-Schicht , a tool
+Material-Collaboration -layer and the Material-Schicht .
+The composition of tool and works on Rollenkom Material-Frameworks- position after Tool and Material-Schichten modeled as a framework
+.
+The production mold design allows structured tools. These
+can atomically, be joined together, or recursively. The latter for example, using the Composite-Patterns . Insufficient subtools for work
+on their own material or with less complex roles on the same
+as the upper tool. You see only simple roles and meet the
+principles of the Information-Hiding . The separation of the tools in terms of function and
+interaction is similar to the separation of user interface and application logic
+in 3Tier-Ansatz . Of the functional part of a tool takes care of the Mani-
+pulation of the material, and access via the Material-Rollen . The Interaction Part
+responds to user inputs. If possible this will be done without a certain
+mode and can therefore be replaced independently. This is a refinement of the Model-View -Controller-Patterns . The tool contains since-
+with a view (Interaction Part), Controller (functional part), the Managing part of the
+model (functional part of the tool, Materialzugriff, material).  The implementation-
+tation is carried out with a Observer between Interaction Part and Function part,
+the Interaction Part monitors the function part. Also, an observer between subtools and Supertools, the Supertool notifies the
+
+
+
+
+
+subtools Aßmann'S LAW 47 the changes. In the implementation part and
+interaction Part function is merged with the expandability destroyed, but the run-time behavior improved. Instead it can access with editing events ge-
+works.
+The tools in the environment now live with their coordinators and Materia-
+lien with administrators. The environment is responsible for the initialization of all elements of the display and waiting for an Activate tool. The
+WERKZEUGKOORDINATOR grouped tools and material. It is
+a global object with Tool-Material -dictionary and a Werkzeug-Factory .
+There is also a constrained material containers, of a certain strategy
+pursued in order to identify dependencies between materials. An automaton is
+a tool for automated, repetitive tasks, i.e. a type macro tool, which can run in the background. It encapsulates automated workflow, for example production and storage. This is with State-Charts ,
+activity diagrams or Makro-Kommandos described.
+TAM can be regarded as a variant of layered frameworks. There are
+different Minikonnektoren between the layers.
+
+Interaction parts n-th Observe r Functional Parts n-th Bridge Material container (dependencies) Material access n-th Bridge Material
+Figure 10: TAM as a layered Framework
+
+
+
+
+
+
+48 Aßmann'S LAW
+3.4 Eclipse, and Framework Extension-Languages
+Eclipse is since Version 3 as a set of frameworks. These are used
+to IDE-applications, IDE itself, GUI-applications and Rich-Thin client to develop. Eclipse stacks frameworks.
+
+IDEApplications
+CDT JDT Plugin Dev.Tools
+IDE
+Compare Debug Team
+Rich Client Optional Workspace Update Help Text
+Rich Client Platform
+Generic Workbench
+JFaceWidget Framework (MVC)
+SWTWindow Library OSGI dynamic component model (Runtime)
+Java
+Figure 11: Stack Eclipse Framework
+
+The special feature of Eclipse plug-ins, and the possibility is to
+develop and define Extension-Points. All frameworks have hooks into Eclipse ex- tension-points. These are no concept of variability, but
+
+
+
+
+Aßmann'S LAW 49
+for expandability. Can Extension-Points classes, menus, Properties, or also be Classpath-Eintrage. Plug-ins are
+loaded dynamically from a specific directory. There is a plugin for the Plugin-Klassen.xml as Mani-
+fixed-file. Plug-ins extend the class plugin or AbstractUIPlugin. The
+Generic Workbench structured and organised the GUI a rich client platform application. The sprachenkontrollierte Framework-Erweiterung replaces the frame- work-Hook-Patterns in Eclipse. A Core-Interpreter interprets the XML-files in order to Extension-Points to expand. Eclipse provides a domain-specific language for Extension-Points and the binding. The already defined Fra- mework- Hook-Patterns can as a small language for Framework-Extension
+be regarded. You should also be printable in logic and formally
+describe constraints on variability and expandability.
+
+
+
+
+
+50 Aßmann'S LAW
+3.5 SAP R/3 Framework
+The company developed its framework for business applications in SAP R/2 (release 2) or as a mainframe solution. Currently, R/3 is still industry standard and works with the new MySAP, and business-by-design.
+The new developments of SAP objectives approximately since 2000 on Webba- zation. The R/3 is a 3-tier architecture for client and server. To program-
+ming is the in-house ABAP language. So the database can also be used easily. Be Workflow-Spezifikationen-
+EIGNISGESTEUERTE process chains expressed by it. With so-called Business-Blueprints
+prefabricated process for the installation at the customer location is provided. In the
+future will be placed on SAP NetWeaver, the full Java and Web-based.
+R/3 has a wide range of modules. Internas with Financials (FI), Controlling
+(CO), Analgenwirtschaft (AM), project system (PS).  MISCALLENEOUS with Of-
+fice&amp;Communication (OC), industry solutions (IS).  Core with Distribution (SD), MA,
+Ba Teria Management (MM), Production Planning (PP), Quality Management (QM),
+maintenance (PM) and Human Resources (HR).  The system is internally not very
+modern. Each module costs and must be adapted for the specific Ge-
+Aiginger and workflows.
+
+Organization Model
+BusinessObjects
+BusinessProcessModel
+Repository
+Figure 12: Adaptation of the SAP R/3 frameworks.
+
+
+
+
+Aßmann'S LAW 51
+
+the event-driven process chains (EPK) for the modeling of Ge-
+schaftsablaufen used. It is simple algebra, in the opera-
+gates work on events. Process provide results to operators and
+events. Also the passing on to other workflows is possible. R/3 is thus
+a workflow framework for its instantiation EPK-Spezifizierungstemplates
+be used. There are similarities, expandability (variability)
+of the Workflow-Sprache.
+The repository of R/3, a distribution of data on Application Link
+Enabling (ALE) before. This is a intelligent middleware layer through which a re-
+pository can be operated on multiple databases. The complexity of the
+database is hidden from ALE. It is used to store business
+object with interfaces (Business Application Interfaces, short BAPI).  The implementation takes place with layered objects, internally a whole Business-Object - model. The implementation is similar Role-Objects Mixins and
+modeled, but is easier. The quantity of Business Objects is itself a layered framework.
+The engineering of SAP-applications is done by a business process
+engineer. Business applications are
+connected by the Enterprise Integration Server. This combines R/3 inter alia with legacy systems, office software, data warehouses and Java.
+The modeling of business processes for automation (billing, ship-
+ping, CRM) is a very large market. As quintessence should take that a Prozess-Spezifikations -language is needed for a process framework, such as SAP R/3. In addition to the solution with the event-driven process chains are also Petri nets (YAFL) can be used for this purpose, supported on a respective Prozess-Ausfuhrungs -engine.
+Also for the SAP-Framework is the distinction of unforeseen and explicit Extension-Points important. Explicit extensibility points are
+achieved by the quality of the software engineering and provide robust expandability. For the implicit purpose of the associated.
+
+
+
+
+52 Aßmann'S LAW
+3.6 San Francisco framework for business applications
+the San Francisco framework has been developed by IBM from 1995 to 1997, with the aim to create a layered framework. Distributed Applications, Basie,
+while on business design patterns should be achievable. The goal was the
+flexibility with object-oriented technology (Java) should be achieved. Furthermore reusability, isolation of the underlying technology
+and focus on core activities. A fast, high-quality adjustment for all business applications, as well as integration with other
+languages were also on the agenda.
+The architecture consists of 3 layers, Foundation (with infrastructure and servi-
+ces), Common-Business -Objects and core business through -processes.
+Use the following techniques used in San Francisco. There are predefined
+business objects. Also a component model with so-called User
+Defined entities. It is material, which if necessary
+is also persistent. It can with constructors, getters and Setter-Klassen, etc. nerve center
+. Global Dealer will be created by factories and in container
+, similar to Java Entity Beans. Business processes will be on common
+function FINANCIAL interface (CFFI) determines. Here are
+ten common Funktionalita- defined, the be used with each other. Warehouse management falls below, but also order management, accounts and the General Ledger for
+journaling.
+Extension of San Francisco works on the marking of classes as
+Extension-Points using a particular naming convention.
+E <number>_ <name>. Business objects can by inheritance in the sense of a
+white-box frameworks will be extended. Subclasses of the class property container via a special Design-Pattern new attributes can dynamically,
+without Neukompilation add to objects. The access to the attributes is performed on a hash table. Policy-Klassen are used to implement business
+rules. This strategy used as Extension-Point and chain of responsibili-
+
+
+
+
+
+ty to Aßmann'S LAW 53 to link several policies. With Composite policies can be inserted with a higher priority. By dynamic references allows the frame- work the extension of value ranges.
+Life-cycle or workflow is modeled by expandable statecharts.
+There is a decision table with state transitions. The rows contain the conditions and actions and change the status of the process.
+A dynamic extension with new paths is
+possible by modifying the table. Appropriate actions can be defined which
+will be triggered by a Transiti-on. Also the delete paths is therefore possible. Statecharts
+are finite automata and regular and can be evaluated. When adding
+Sub-Statecharts is the question of whether the predictability is disturbed.
+Many special design patterns used in San Francisco. With class repla-
+Cement provided as behavior be changed without classes and application logic
+to change. A Super-Factory created specialized factories for special classes.
+The above-mentioned property container
+Geschaftsobjekts-Instanz delivers a dynamic extension to the new attributes. Only the interface
+is gonna be nearing finalisation, so that new properties can be aggregated. Business process
+command allows a logical object by several physical objects to the IMP.
+lementieren, with the aim to drive a business process. Command-Pattern
+encapsulates the process such as facade. With simple policy business rules as a set of methods in the object made interchangeable. This is done by a
+delegate, the evaluation of the rules to a Strategy-Objekt . The chain of
+responsibility policy Business Rules modeled as a chain, thus
+there are many rules, the dynamic can be replaced. It is a 1- TH-Minikonnektor, combined with strategy. There is a search for the fit, the rule for the current status.
+For a framework are the Erweiterbarkeits-Mechanismen the most important part. It
+should always be used Pree-Patterns instead of simple inheritance. The object-
+oriented modeling is loud Stefan Hermann also "ill" and should
+be replaced by Rollenmodellierung. Perl 6 already has roles. This is
+a danger, as Perl so that has an advantage. And nobody likes Perl.
+
+
+
+
+54 Aßmann'S LAW
+3.7 Framework documentation
+the documentation of the Framework is important, because understanding
+is very difficult. A good documentation helps unknown mappings of Domanenkon aimed at classes, questions about exposing Framework functionality and architecture and
+Integritats-Verstandnis . Also in case of technical problems, for example, the
+choice of the platform.
+With the pyramids for the documentation will be principle the Framework on
+different described here. There is also a redu-
+zible structure for the documentation. On the first level, the Framework
+selection in the form of a brief description. In addition, there is a current amount you can find
+with problem and solution description, as well as examples and enumeration is used-
+ter frameworks. Level 2 describes standard usage. Here application
+form ( for use cases for the Framework. This includes among
+others a context, Problem and appropriate instantiation of the Framework.
+Level 3 provides information on the detailed design ultimately. Here is the
+framework used by the documented design patterns on the edge, i.e. the Framework-Hook patterns. In addition, there is a glossary and a search option.
+In order to realize good framework documentation provides the elucidative pro-
+Gramming himself mixes. It is documenting here created a
+linked with the source code. The linearization is broken by hypertext.
+It is best worked on two screens, on the a code, on the
+other documentation.
+With a Tutorial-Generation -Environment is carried out during the development of the linking of the codes with the documentation. Automated Updates simplifications
+Chen the documentation process. A Beispiel-System is the development ENVI-
+ronment for tutorials and manuals (depth).  Explanatory text can
+be created here and Code-Einbettung via Drag&amp;Drop. Everything is then for
+example, in HTML-format compiled
+
+
+
+
+Aßmann'S LAW 55
+3.8 trustworthy Framework instantiation
+is the instantiation of the Framework often a very time consuming task. It sapdb- animals many Extension and Variation-Points with many dependencies.
+In white-box frameworks it is for the disposal of non-compliant Subklas
+. In black box are not suitable classes due to multi-point -
+Aggregated dependencies. Some conditions are static from the outset not
+verifiable.
+Problem 1: instantiation of 1-T⎯H-hooks for multi-page dependencies
+static, domain-specific Constraint e.g. : Auto-Konfigurator Problem 2: blittable hierarchies (catalog, supply)
+dynamic, domain-specific Constraint
+e.g. : salespoint Problem 3: Parallel hierarchies
+static, technical constraint
+for example: parallel variation of interface for
+Problem 4: Dynamic assumptions
+dynamic, technical constraint for example: zero-tests, range checks, collations, contracts
+
+cause Stage Static Dynamic
+Domain-specific multi-point isomorphic hierarchies
+Technical (design) Parallel hierarchies Dynamic assumptions' and hence
+
+
+
+
+
+56 Aßmann'S LAW
+Solution 1: Refactoring of multilateral dependencies
+constraint will be moved into the framework, since the Framework will not
+itself to control
+solution 2: Static verification static constraints
+with UML-collaborations are technical and domain-specific
+Instantiierungs-Constraints writable. OCL specified invariant,
+pre- and postconditions, processed types and
+extensions can analyze and instantiating
+Solution 3: A negative test
+run tests for the behavior at Fehlinstantiierung in addition to
+the positive functional testing. Misuse-Diagramme ,
+developed for System-Abuse Framework-Misuse , therefore, can also
+be shown incorrect Instantiierungsbedingungen
+Solution 4: Framework Instantiation language
+as in Eclipse are variations and Erweiterungs-Punkte typed
+this is possible for code, GUI-elements and business objects, the
+language of Eclipse is XML-based and can therefore only XML
+data types and use a tree-like specification
+. Context-sensitive
+constraints on Logic based languages and thus can print multi-page conditions.
+Corresponding Logik-Sprachen need to
+be expanded as domain-specific, so must be typed logic, as well as
+OWL, SWRL (ontologies), or Frame-Logic . Concepts such as hooks,
+variations and extensibility points have to be printed.
+Solution 5: Dynamic contract Checking
+dynamic, multilateral constraints must
+be evaluated at run time, this can be carried out with a Framework-Contract Layer or
+Contract-Aspects happen.
+
+
+
+
+Aßmann'S LAW 57
+Solution 6: Contract aspects
+is the encapsulation of the first contract in a layer,
+this can then be moved in a Vertrags-Aspekt. Tools
+for weaving such as Aspect/J then integrate the Treaty.
+Replacement easier with less effort is possible if
+the aspect cuts through many layers.
+
+
+
+
+
+58 Aßmann'S LAW
+3.9 binary compatibility
+with changes to the framework I finished on the basis of new requirements, code
+enhancement and bug fixing there is often incompatibility with existing
+leading plug-ins and applications. It comes to renaming, add,
+lerase, changes in type, split and merge. The resulting
+problem is the destruction of the compatibility of the binary version of the plug-ins. The
+solution lies in the adaptation of the plug-ins, and iterated, so several times with
+repeated adjustment of the Framework. The advantage is significant for Third-Party - companies that do not need to make manual adjustments. Framework
+developers get improved support for the development and maintenance,
+clients get a silent Plugin-Adaptierung .
+Software-Evolution is cheaper, faster and more user-friendly. In the B2-
+PDE-project with Comarch Plugin-Adaptierung implemented an automated
+.
+
+
+
+
+Aßmann'S LAW 59
+4 Refactoring
+Refactoring Is the semantikerhaltende and beyond, but strukturandernde transformation services for a program. Often the aim is that one Design-Pattern. It han- delt is harmless operations in evolution, so to no extension
+. In 1992, we introduced the concept of William Opdyke. 1998 WILL BE
+THE Re-Factoring tool implemented together in the University of Karlsruhe. It
+transformations between Klassengraphen can afford.
+The classes of the refactorings are renaming an entity (all references of the
+Definition-Use -Graphs need to be updated), moving a entity (activity a class property, so attribute, method, or exception, must be compensated for by Eigenschaften-Shadowing in a particular area, the), separate or combine an entity (methods, classes, packages or
+the treated and all references need to be updated).  The outline the entity (split off) and inline entity (Merge) are working on a method or generic
+class and allow the insertion of parameters. For all of these classes is that
+the analysis of the Definition-Use -Graph is a very difficult task.
+To come to the refactoring to Software-Komposition, operators must
+be considered in the modern software technology. Connectors are between
+the ports of components, inheritance deals with reuse manure and Mixin-based inheritance, parametrization can
+be achieved with GenVoca. ROLE MODEL MERGE is another element.
+If software development is formulated as algebra, then all activities must be understood as operators. Elements of the Algebra are the
+connectors (components with ports), inheritance (classes with Eigenschaftslisten), Refacotings Syntaxbaume (abstract), setting parameters (templates for abstract
+Syntaxbaume).  It is a model for all with gray box - components.
+
+
+
+
+60 Aßmann'S LAW
+THE INVASIVE SOFTWARE composition from the CBSE-course in the summer semester allows
+adaptation and extension of components through transformations of hooks.
+A component is considered Fragment-Box with a lot of elements (classes,
+packages) understood. Hooks can
+be Fragemente or bodies in this box. Examples are the beginning of a method or the end, as well as declared hooks. The Invasive composition as Hook-Transformation is used with their compo- sers just discussed as a generalized concept for the operators. Connected,
+gate work on declared hooks, as well as inheritance. Role model Merge, by contrast, uses implicit hooks. The binding, Rename, Remove,
+and upgrade works by the boxes, composer and hooks. As with the abstract Kompositions-Operatoren refactorings are Syntax-Graphen term
+.
+As a consequence a operatorenbasierte view of the software
+development. At a time when catches are on the draft compositions
+, lead to a Product-Build. In this process, both semantikerhal-
+tities, harmless operators, as well as hazardous, non-semantikerhaltende, GE-
+uses.
+The Algebra-Eigenschaften provide useful rules as idempotent, Kommutativi-
+indeed, associativity and monotony (only when you add by glueing and exten- sion) are available. However, this is only for the semantikerhaltenden and syntax operators received when refactoring, so Identitatsoperationen. This sym- metric operations are harmless and can be everywhere in the draft and Evoluti- on be used. The dangerous development, improvements and
+Modifkationen must be separated.
+AßMANNS dream is that all tools by Refactoring-Operatoren
+Kompositions-Sprachen and be replaced. This leads to automated de- sign, Build, and evolution. To do this the is broadcasted-system is also to be observed.
+In conclusion, it should be noted that design patterns only a way for variable,
+extensible software for frameworks. Also the component-based software product-development (CBSE) can share with the software components, and not necessarily only in classes. The also allows replacement. Components
+
+
+
+
+Aßmann'S LAW 61
+better model are static abstractions, in which classes are only a model.
+Other models are very well possible.
+Also the model-driven architecture (MDA) is transformational. The transforma- tions are a Variabilitats-Methode . The variants were produced not by Pat- terns, but generators. Parnas has already in his concept of the Modulari- cantly between hervorgesehener and unforeseen Evoultion discrepancies between Member States. This product lines and MDA will continue to set. For more Variabilitatskon- youth policies are templates for planned Variabililtat, as well as aspects for unplanned, as
+well as views.
+
+
+
+
+
