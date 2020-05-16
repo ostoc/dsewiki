@@ -1,39 +1,28 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./layout.module.css";
 
-class List extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showList: true,
-    };
-  }
-  render(allPostsData) {
-    return (
-      <ul className={styles.list}>
-        <li className={styles.listItem}>
-          <Link href="/">
-            <a>{`<- Back to home`}</a>
-          </Link>
-        </li>
+export default function List({ allPostsData }) {
+  const [showList, setShowList] = useState(true);
 
-        {this.state.showList
-          ? this.props.allPostsData.map(({ id, title }) => (
+  return (
+    <ul className={styles.list}>
+      <Link href="/">
+        <li className={styles.listItem}>{`<- Back to home`}</li>
+      </Link>
+
+      {showList
+        ? allPostsData.map(({ id, title }) => (
+            <Link href="/courses/[id]" as={`/courses/${id}`}>
               <li key={id} className={styles.listItem}>
-                <Link href="/courses/[id]" as={`/courses/${id}`}>
-                  <a>{title}</a>
-                </Link>
+                {title}
               </li>
-            ))
-          : null}
-        <button
-          onClick={() => this.setState({ showList: !this.state.showList })}
-        >
-          {this.state.showList ? "▲ Hide" : "▼ Show"} List
-        </button>
-      </ul>
-    );
-  }
+            </Link>
+          ))
+        : null}
+      <li className={styles.listItem} onClick={() => setShowList(!showList)}>
+        {showList ? "↑ Hide" : "↓ Show"} List
+      </li>
+    </ul>
+  );
 }
-export default List;
