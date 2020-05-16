@@ -4,8 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Inter", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
   font-size: 16px;
 }
@@ -21,7 +20,16 @@ a {
 
 hero {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 600;
+  color: #0070f3;
+  line-height: 1.2;
+}
+h1 {
+  font-size: 1.4rem;
+}
+h2 {
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.8);
 }
 a:hover {
   text-decoration: underline;

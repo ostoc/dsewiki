@@ -1,42 +1,21 @@
-# DSE Wiki
+## About this wiki
 
-This wiki is related DSE study. You can find lecture notes, past exams, etc. here. The main purpose of this wiki is to help students study better and stay in the community.
+This wiki is related the [DSE Master program at TU Dresden](https://tu-dresden.de/ing/informatik/sya/se/master-dse). You can find lecture notes, past exams here.
 
-## Where can I find the Wikis
+## Where can I find the past exams
 
-You can access the wiki via this [repo's wiki](https://github.com/ostoc/dsewiki/wiki), which contains notes, past exams, useful links.
+Exams are now stored in `docs` folder. Notes and files can be found in `files` folder. You can vist [https://dsewiki.now.sh/](https://dsewiki.now.sh/) for a rendered html website
 
-## How can I contribute to this Wikis
+## How can I contribute to this wiki?
 
-Fork this repo and send a PR
+Fork this repo and send a PR.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+## Why I build this
 
-## Getting Started
+I stuided this Master program in 2012. After I graduate, I decided to share my notes to other people. Also it serves as my experimental field to test some web tech.
 
-First, run the development server:
+Recently I decided to try Next.js, and ported all the information to a new website.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Hope this site is useful to you.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+During 2020 quarantine

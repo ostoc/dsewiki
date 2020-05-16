@@ -1,5 +1,5 @@
 ---
-title: FCDS
+title: Foundations of Concurrent and Distributed Systems
 ---
 
 # Useful Links
