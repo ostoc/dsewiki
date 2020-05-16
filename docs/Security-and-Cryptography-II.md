@@ -4,7 +4,7 @@ title: Security and Cryptography II
 
 # Useful Links
 
-[IFSR | German](ftp://ftp.ifsr.de/komplexpruef/Security_and_Cryptography_II/)
+ftp://ftp.ifsr.de/komplexpruef/Security_and_Cryptography_II/
 
 
 # Notes
