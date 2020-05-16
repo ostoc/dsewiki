@@ -1,0 +1,29 @@
+.container {
+  max-width: 60rem;
+  padding: 0 1rem;
+  margin: 3rem auto 6rem;
+  display: flex;
+}
+.list {
+  flex: 1 1;
+  width: 15rem;
+  padding: 0;
+
+  font-size: 0.85rem;
+}
+.listItem {
+  padding: 0.5rem;
+  list-style: none;
+  margin-top: -1px;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 45rem) {
+  .list {
+    padding: 0;
+    width: 100%;
+  }
+  .container {
+    flex-direction: column;
+  }
+}

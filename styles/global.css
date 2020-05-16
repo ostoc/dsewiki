@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+hero {
+  font-size: 2rem;
+  font-weight: 800;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+article {
+  flex: 4 1;
+  padding: 0 1rem;
+}
+
+button {
+  color: #0070f3;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  border: 1px solid #ddd;
+  background: #fff;
+  height: 2rem;
+  width: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #f8f8f8;
+}
