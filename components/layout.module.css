@@ -11,17 +11,7 @@
   grid-template-columns: 4fr 1fr;
   gap: 1rem;
 }
-.switcher {
-  top: 2rem;
-  right: 2rem;
-  position: fixed;
-  font-size: 2rem;
-  opacity: 0.5;
-}
-.switcher:hover {
-  opacity: 1;
-  cursor: pointer;
-}
+
 .list {
   flex: 1 1;
   width: 15rem;
