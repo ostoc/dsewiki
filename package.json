@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--openssl-legacy-provider' next dev",
     "build": "next build",
     "start": "next start",
     "export": "next export"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "date-fns": "^2.13.0",
     "gray-matter": "^4.0.2",
     "next": "9.4.0",
