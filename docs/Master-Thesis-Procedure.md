@@ -17,3 +17,5 @@ title: Master Thesis Procedure
 1. Ask your supervisor for announcement of your defense through the automatical systems (displays in the foyer). The announcement should inform on the date, time, venue, title and include an abstract of your thesis.
 1. Have yourself exmatriculated with the International Office (AAA) after successful completion of your studies.
 1. Please note that issuing your Master′s Certificates can take some time. There will be a provisional certificate of your final degree available from the SCIS some days after your defense.
+
+More information/FAQs: [Click Here](https://tu-dresden.de/ing/informatik/studium/examination-office/faqs#:~:text=Information%20about%20the%20thesis)
